@@ -20,8 +20,6 @@ class MovieListResouce(Resource) :
         limit = request.args['limit']
         order = request.args['order']
 
-        user_id = get_jwt_identity()
-
         # 2. 디비로부터 내 메모를 가져온다.
         try :
             connection = get_connection()
@@ -123,7 +121,7 @@ class MovieInfoResouce(Resource) :
                 'count' : len(result_list) ,
                 'items' : result_list }, 200
 
-                
+
 class MovieSearchResource(Resource):
     def get(self):
         
