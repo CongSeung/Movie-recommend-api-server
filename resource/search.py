@@ -28,6 +28,7 @@ class MovieSearchResource(Resource):
                         on m.id = r.movieId
                         WHERE m.title
                         LIKE '%'''+keyword+'''%'
+                        group by m.id
                         limit '''+offset+''' , '''+limit+''';'''
             
             # record = (movie_id,)
