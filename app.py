@@ -10,7 +10,6 @@ from config import Config
 
 app = Flask(__name__)
 
-   
 # 환경변수 셋팅
 app.config.from_object(Config)
 
@@ -22,7 +21,6 @@ jwt = JWTManager(app)
 def check_if_token_is_revoked(jwt_header, jwt_payload): 
     jti = jwt_payload['jti']
     return jti in jwt_blacklist
-
 
 api = Api(app)
 

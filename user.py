@@ -94,7 +94,6 @@ class UserRegisterResource(Resource):
         ### user_id는 두 테이블을 이어주는 Foreign Key 가 되기 때문에 중요함.
         ### user 테이블의 id를 recipe 테이블의 user_id로 넣어줘야한다는 뜻
 
-       
 class UserLoginResource(Resource):
     def post(self):
 

@@ -9,7 +9,6 @@ import mysql.connector
 
 class MovieListResouce(Resource) :
     
-
     def get(self) :
         # 1. 클라이언트로부터 데이터를 받아온다.
         # request.args 는 딕셔너리다.
@@ -74,7 +73,6 @@ class MovieListResouce(Resource) :
 
 class MovieInfoResouce(Resource) :
     
- 
     def get(self, movie_id) :
       
         # 1. 디비로부터 내 영화 상세정보를 가져온다.
@@ -125,145 +123,3 @@ class MovieInfoResouce(Resource) :
                 'count' : len(result_list) ,
                 'items' : result_list }, 200
 
-
-
-# class MemoInfoResource(Resource) :
-#     @jwt_required()
-#     def put(self, memo_id):
-#         # 1. 클라이언트로부터 데이터를 받아온다.
-#         # {
-#         #     "title": "점심먹자",
-#         #     "date": "2022-07-10 14:00",
-#         #     "content": "짜장면"
-#         # }
-#         data = request.get_json()
-#         user_id = get_jwt_identity()
-
-#         # 2. 디비 업데이트
-#         try :
-#             # 데이터 업데이트 
-#             # 1. DB에 연결
-#             connection = get_connection()
-
-#             # 2. 쿼리문 만들기
-#             query = '''update notepad
-#                         set title = %s, 
-#                         date = %s,
-#                         content = %s
-#                         where id = %s and user_id = %s;'''
-            
-#             record = (data['title'] , data['date'],
-#                         data['content'] ,
-#                         memo_id, user_id )
-
-#             # 3. 커서를 가져온다.
-#             cursor = connection.cursor()
-
-#             # 4. 쿼리문을 커서를 이용해서 실행한다.
-#             cursor.execute(query, record)
-
-#             # 5. 커넥션을 커밋해줘야 한다 => 디비에 영구적으로 반영하라는 뜻
-#             connection.commit()
-
-#             # 6. 자원 해제
-#             cursor.close()
-#             connection.close()
-
-#         except mysql.connector.Error as e :
-#             print(e)
-#             cursor.close()
-#             connection.close()
-#             return {'error' : str(e)}, 503
-
-
-#         return {'result' : 'success'}, 200
-
-#     @jwt_required()
-#     def delete(self, memo_id) :
-#         # 1. 클라이언트로부터 데이터를 받아온다.
-
-#         user_id = get_jwt_identity()
-
-#         # 2. 디비로부터 메모를 삭제한다.
-
-#         try :
-#             # 데이터 삭제
-#             # 1. DB에 연결
-#             connection = get_connection()
-
-#             # 2. 쿼리문 만들기
-#             query = '''delete from notepad
-#                         where id = %s and user_id = %s;'''
-            
-#             record = ( memo_id, user_id )
-
-#             # 3. 커서를 가져온다.
-#             cursor = connection.cursor()
-
-#             # 4. 쿼리문을 커서를 이용해서 실행한다.
-#             cursor.execute(query, record)
-
-#             # 5. 커넥션을 커밋해줘야 한다 => 디비에 영구적으로 반영하라는 뜻
-#             connection.commit()
-
-#             # 6. 자원 해제
-#             cursor.close()
-#             connection.close()
-
-#         except mysql.connector.Error as e :
-#             print(e)
-#             cursor.close()
-#             connection.close()
-#             return {'error' : str(e)}, 503
-
-
-#         return {'result' : 'success'}, 200
-
-#     @jwt_required()
-#     def post(self) :
-
-#         # 1. 클라이언트로부터 데이터 받아온다. 
-#         # {
-#         #     "title": "커피",
-#         #     "date": "2022-07-01 11:00",
-#         #     "content": "커피마시면서 개발"
-#         # }
-
-#         data = request.get_json()
-#         user_id = get_jwt_identity()
-
-#         # 2. 메모를 데이터베이스에 저장
-#         try :
-#             # 데이터 insert 
-#             # 1. DB에 연결
-#             connection = get_connection()
-
-#             # 2. 쿼리문 만들기
-#             query = '''insert into notepad
-#                     (title, date, content, user_id)
-#                     values
-#                     (%s , %s , %s, %s);'''
-            
-#             record = (data['title'], data['date'], 
-#                     data['content'], user_id  )
-
-#             # 3. 커서를 가져온다.
-#             cursor = connection.cursor()
-
-#             # 4. 쿼리문을 커서를 이용해서 실행한다.
-#             cursor.execute(query, record)
-
-#             # 5. 커넥션을 커밋해줘야 한다 => 디비에 영구적으로 반영하라는 뜻
-#             connection.commit()
-
-#             # 6. 자원 해제
-#             cursor.close()
-#             connection.close()
-
-#         except mysql.connector.Error as e :
-#             print(e)
-#             cursor.close()
-#             connection.close()
-#             return {"error" : str(e)}, 503
-
-#         return {'result' : 'success'}, 200
