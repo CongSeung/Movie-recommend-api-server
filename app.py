@@ -1,10 +1,8 @@
 from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_restful import Api
-from resource.movie import MovieInfoResouce, MovieListResouce
+from resource.movie import MovieInfoResouce, MovieListResouce, MovieSearchResource
 from resource.rating import MovieRatingResource, RatingListResource
-from resource.review import MovieReviewResource
-from resource.search import MovieSearchResource
 from user import UserLoginResource, UserLogoutResource, UserRegisterResource, jwt_blacklist
 from config import Config
 
