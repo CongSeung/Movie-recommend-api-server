@@ -16,7 +16,7 @@ class MovieListResouce(Resource) :
         # offset = request.args['offset']
         # offset = request.args.get('offset')
 
-        # movie?offset=0&limit=25 의 쿼리스트링은 아래 args 에서 가져오는 것이다.
+        # movie?offset=0&limit=25은 쿼리스트링 중에 args로 가져오는 것이다.
         offset = request.args['offset']
         limit = request.args['limit']
         order = request.args['order']
@@ -27,10 +27,10 @@ class MovieListResouce(Resource) :
         try :
             connection = get_connection()
 
-            query = '''select m.id, m.title, count(r.movie_id) as cnt, ifnull((r.rating), 0 )as avg
+            query = '''select m.id, m.title, count(r.movieId) as cnt, ifnull((r.rating), 0 )as avg
                         from movie m 
                         left join rating r
-                        on m.id = r.movie_id
+                        on m.id = r.movieId
                         group by m.id
                         order by '''+order+''' desc
                         limit '''+offset+''' , '''+limit+''';'''
@@ -81,10 +81,10 @@ class MovieInfoResouce(Resource) :
         try :
             connection = get_connection()
 
-            query = '''select m.* , count(r.movie_id) as cnt, ifnull(avg(r.rating), 0) as avg
+            query = '''select m.* , count(r.movieId) as cnt, ifnull(avg(r.rating), 0) as avg
                         from movie m
                         left join rating r
-                        on m.id = r.movie_id
+                        on m.id = r.movieId
                         where m.id = %s
                         group by m.id;'''
             

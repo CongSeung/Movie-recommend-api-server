@@ -9,7 +9,7 @@ import mysql.connector
 
 class MovieReviewResource(Resource):
     def get(self, movie_id):
-        
+        # 1. offset과 limit 정보를 쿼리스트링에서 가져온다.
         offset = request.args['offset']
         limit = request.args['limit']
 
@@ -22,10 +22,10 @@ class MovieReviewResource(Resource):
             query = '''select m.title, u.name, u.gender, r.rating
                         from rating r
                         left join user u
-                        on u.id = r.user_id
+                        on u.id = r.userId
                         left join movie m
-                        on m.id = r.movie_id
-                        where r.movie_id = %s
+                        on m.id = r.movieId
+                        where r.movieId = %s
                         limit '''+offset+''' , '''+limit+''';'''
             
             record = (movie_id,)
