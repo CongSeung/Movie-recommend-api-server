@@ -7,6 +7,8 @@ from mysql.connector.errors import Error
 from mysql_connection import get_connection
 import mysql.connector
 
+################## 안쓰는 파일 ####################
+
 class MovieReviewResource(Resource):
     def get(self, movie_id):
         # 1. offset과 limit 정보를 쿼리스트링에서 가져온다.
