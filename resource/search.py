@@ -22,7 +22,7 @@ class MovieSearchResource(Resource):
 
             connection = get_connection()
         # 2. 쿼리문 작성
-            query = '''SELECT m.*, count(r.rating) as avg, ifnull(avg(r.rating), 0) as avg 
+            query = '''SELECT m.title, count(r.rating) as avg, ifnull(avg(r.rating), 0) as avg 
                         FROM movie m
                         left join rating r
                         on m.id = r.movieId
@@ -51,8 +51,8 @@ class MovieSearchResource(Resource):
             i = 0
             for record in result_list :
                 result_list[i]['avg'] = float(record['avg'])
-                result_list[i]['year'] = record['year'].isoformat()
-                result_list[i]['createdAt'] = record['createdAt'].isoformat()
+                # result_list[i]['year'] = record['year'].isoformat()
+                # result_list[i]['createdAt'] = record['createdAt'].isoformat()
                 i = i + 1         
 
 
