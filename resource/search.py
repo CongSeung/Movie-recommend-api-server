@@ -17,6 +17,9 @@ class MovieSearchResource(Resource):
 
         # 1. 디비로부터 데이터를 가져온다.
         try :
+            offset = request.args['offset']
+            limit = request.args['limit']
+
             connection = get_connection()
         # 2. 쿼리문 작성
             query = '''SELECT m.title, count(r.rating) as avg, ifnull(avg(r.rating), 0) as avg 
@@ -24,7 +27,8 @@ class MovieSearchResource(Resource):
                         left join rating r
                         on m.id = r.movieId
                         WHERE m.title
-                        LIKE '%'''+keyword+'''%';'''
+                        LIKE '%'''+keyword+'''%'
+                        limit '''+offset+''' , '''+limit+''';'''
             
             # record = (movie_id,)
 
