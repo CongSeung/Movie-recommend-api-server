@@ -167,7 +167,7 @@ class UserLoginResource(Resource):
         # create_access_token(user_id, expires_delta=datetime.timedelta(minutes= 1)) 을 하면 1분이 지나면 로그아웃된다.
 
         return {'result':'success',
-        'user_id' : access_token}, 200 
+        'accessToken' : access_token}, 200 
 
 jwt_blacklist = set()
 # 로그아웃 클래스
